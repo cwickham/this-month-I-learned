@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>This Month I Learnt</title>
+    <title>This Month I Learned</title>
     <meta charset="utf-8" />
     <meta name="author" content="Charlotte Wickham" />
-    <meta name="date" content="2021-04-09" />
     <script src="index_files/header-attrs/header-attrs.js"></script>
     <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
   </head>
@@ -12,15 +11,539 @@
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
-# This Month I Learnt
+# This Month I Learned
 ### Charlotte Wickham
-### 2021-04-09
+### @ Rladies DC, April 2021
 
 ---
 
 
 
 
+
+
+# The way I learn
+
+1. Do an example with guidance
+2. Apply it to something I care about
+3. Teach it to someone else
+
+But this all requires:
+
+0\. Know it exists
+
+How do you get exposure to things?
+
+---
+class: inverse center middle
+
+# Add a Snippet to RStudio
+
+---
+
+## Snippets Quickly Add Chunks of Code
+
+.pull-left[
+
+#### Insert a Snippet
+
+1. Type a keyword
+
+2. Hit Shift + Tab
+
+3. Hit Tab to cycle through placeholders
+
+#### Example: `shinyapp`   
+
+]
+
+.pull-right[
+
+&lt;video width="400" height="400" controls&gt;&lt;source src="assets/snippet-shinyapp.mp4" type="video/mp4"&gt;&lt;/video&gt;
+    
+]
+
+
+---
+
+## Snippets Quickly Add Chunks of Code
+
+.pull-left[
+
+#### Insert a Snippet
+
+1. Type a keyword
+
+2. Hit Shift + Tab
+
+3. Hit Tab to cycle through placeholders
+    
+#### Example: `fun`    
+]
+
+.pull-right[
+&lt;video width="400" height="400" controls&gt;
+    &lt;source src="assets/snippet-fun.mp4" type="video/mp4"&gt; &lt;/video&gt;
+
+]
+
+---
+
+.pull-left[
+## Add Your Own Snippet
+
+#### Tools -&gt; Global Options
+
+]
+
+.pull-right[
+![](assets/snippets-edit.png)
+]
+
+---
+
+.pull-left[
+
+## Add Your Own Snippet
+
+#### Edit Snippets
+
+
+    snippet tidy
+  	  `​``{r setup, message = FALSE}
+  	  library(tidyverse)
+  	  ``​`
+  	
+]
+
+.pull-right[
+![](assets/snippets-editor.png)
+]
+
+---
+
+.pull-left[
+
+## Add Your Own Snippet
+
+#### Try it Out
+
+1. Open new Rmarkdown file
+2. Type `tidy`
+3. Hit Shift + Tab
+
+]
+
+.middle[.pull-right[
+&lt;video width="400" height="400" controls&gt;
+    &lt;source src="assets/snippet-tidy.mp4" type="video/mp4"&gt; &lt;/video&gt;
+]]
+
+---
+
+## Learning Journey
+
+https://support.rstudio.com/hc/en-us/articles/204463668-Code-Snippets
+
+
+
+---
+
+layout: false
+class: inverse center middle
+
+# Visual Editor Mode in RStudio
+
+---
+
+.pull-left[
+
+## Visual Editor Mode
+
+#### Activate in any RMarkdown file
+![](assets/visual-editor-button-zoom.png)
+]
+
+.pull-right[
+![](assets/visual-editor-button.png)
+]
+
+---
+
+
+.pull-left[
+
+## Visual Editor Mode
+
+#### What You See is What You Get
+
+]
+
+.pull-right[
+![](assets/visual-editor-mode.png)
+]
+
+---
+
+class: middle
+
+.pull-left[
+## One Reason To Try It: Tables! 
+]
+
+.pull-right[
+&lt;video width="400" height="400" controls&gt;
+    &lt;source src="assets/visual-editor-tables.mp4" type="video/mp4"&gt; &lt;/video&gt;
+]
+
+---
+
+
+## Learning Journey
+
+RStudio 1.4 
+Screenshot
+
+tweet "RStudio's visual editor mode is awesome"
+
+Demo screen cast with default RMarkdown template, of inserting a table. Switch back to non-visual mode.
+
+---
+class: inverse center middle
+
+# Raw Strings
+
+---
+
+.pull-left[
+
+## Character Strings
+
+
+
+```r
+"Defined with double quotes"
+```
+
+```
+## [1] "Defined with double quotes"
+```
+
+
+```r
+'Or single "quotes"'
+```
+
+```
+## [1] "Or single \"quotes\""
+```
+
+Slashes signify an escape, so if you need a literal `\`, you need to escape it:
+
+```r
+writeLines("One: \\, Two: \\\\")
+```
+
+```
+## One: \, Two: \\
+```
+]
+
+.pull-right[
+## Raw Strings
+
+
+```r
+r"(Defined with special syntax)"
+```
+
+```
+## [1] "Defined with special syntax"
+```
+
+
+```r
+r"(Or single "quotes")"
+```
+
+```
+## [1] "Or single \"quotes\""
+```
+
+Everything inside the delimiter, `"(`,  is taken literally
+
+```r
+writeLines(r"(One: \, Two: \\)")
+```
+
+```
+## One: \, Two: \\
+```
+
+]
+
+---
+
+layout:true
+
+## Useful When you Copy a Regular Expression
+
+---
+
+[How to validate an email address using a regular expression?](https://stackoverflow.com/questions/201323/how-to-validate-an-email-address-using-a-regular-expression) - Stack Overflow
+
+Copy this long messy regular expression:
+```txt
+(?:[a-z0-9!#$%&amp;'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&amp;'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])
+```
+
+Straight into a raw string:
+
+```r
+email_pattern &lt;- r"((?:[a-z0-9!#$%&amp;'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&amp;'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\]))"
+email_pattern
+```
+
+```
+## [1] "(?:[a-z0-9!#$%&amp;'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&amp;'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])"
+```
+
+---
+
+
+
+```r
+stringr::str_detect(
+  c("cwickham@gmail.com", "A-malformed.address"), email_pattern
+)
+```
+
+```
+## [1]  TRUE FALSE
+```
+
+### Other details
+
+`r"{}"`, `r"[]"`, or `r"-()-"` (with any number of dashes)
+
+`?Quotes`
+
+---
+
+layout: false
+
+## Learning Journey
+
+New in R 4.0.0 - So I could have read about it in NEWS
+
+Someone mentioned new pipes, led me to Keynotes at useR! 
+What is this raw string thing?
+
+---
+class: inverse center middle
+
+# `dplyr::rowwise()`
+
+
+---
+
+### An simple table for illustration 
+
+
+```r
+library(tidyverse)
+simple &lt;- tibble(
+  group = rep(c(1, 2), each = 3),
+  x = 1:6
+)
+simple
+```
+
+```
+## # A tibble: 6 x 2
+##   group     x
+##   &lt;dbl&gt; &lt;int&gt;
+## 1     1     1
+## 2     1     2
+## 3     1     3
+## 4     2     4
+## 5     2     5
+## 6     2     6
+```
+
+---
+
+### Functions in `mutate()` get the whole column
+
+.pull-left[
+
+```r
+simple %&gt;% 
+  mutate(rank = rank(x))
+```
+
+```
+## # A tibble: 6 x 3
+##   group     x  rank
+##   &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt;
+## 1     1     1     1
+## 2     1     2     2
+## 3     1     3     3
+## 4     2     4     4
+## 5     2     5     5
+## 6     2     6     6
+```
+]
+
+.pull-right[
+&lt;center&gt;&lt;img src="assets/simple-mutate.png" height="400px" /&gt;&lt;/center&gt;
+]
+
+---
+
+### Adding `group_by`, splits that column up
+
+.pull-left[
+
+```r
+simple %&gt;% 
+  group_by(group) %&gt;% 
+  mutate(rank = rank(x))
+```
+
+```
+## # A tibble: 6 x 3
+## # Groups:   group [2]
+##   group     x  rank
+##   &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt;
+## 1     1     1     1
+## 2     1     2     2
+## 3     1     3     3
+## 4     2     4     1
+## 5     2     5     2
+## 6     2     6     3
+```
+]
+
+.pull-right[
+&lt;center&gt;&lt;img src="assets/simple-groupby.png" height="400px" /&gt;&lt;/center&gt;
+]
+
+---
+
+### With `rowwise()`, function gets one element at a time
+
+.pull-left[
+
+```r
+simple %&gt;% 
+  rowwise() %&gt;% 
+  mutate(rank = rank(x))
+```
+
+```
+## # A tibble: 6 x 3
+## # Rowwise: 
+##   group     x  rank
+##   &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt;
+## 1     1     1     1
+## 2     1     2     1
+## 3     1     3     1
+## 4     2     4     1
+## 5     2     5     1
+## 6     2     6     1
+```
+]
+
+.pull-right[
+&lt;center&gt;&lt;img src="assets/simple-rowwise.png" height="400px" /&gt;&lt;/center&gt;
+]
+
+---
+
+## Useful for non-vectorized functions
+
+## Useful for creating and working with list columns
+
+---
+
+## Learning Journey
+
+Row-wise operations 
+https://dplyr.tidyverse.org/articles/rowwise.html
+
+May delay having to learn about [purrr](https://purrr.tidyverse.org/)
+
+Can replace combinations of `mutate()` with `purrr::map()`
+
+No equivalent of `purrr::walk()`
+
+---
+class: inverse center middle
+
+# `gitcreds::gitcreds_set()`
+
+---
+.pull-left[
+
+## Storing GitHub Credentials
+
+I had `GITHUB_PAT` stored in `.Renviron`
+
+Works great with [usethis](https://usethis.r-lib.org/) and [gh](https://gh.r-lib.org/)
+
+Downside: sensitive information stored in a plain text file
+
+]
+
+.pull-right[
+![](assets/renviron-github-pat.png)
+]
+
+---
+
+.pull-left[
+
+##  Storing GitHub Credentials
+
+#### A better way: `gitcreds::gitcreds_set()`
+
+Uses your operating system credential manager:
+* Mac: Keychain Access
+* Windows: Credential Manager
+
+Works seamlessly with usethis and gh
+
+]
+
+.pull-right[
+![](assets/gitcreds-set.png)
+]
+
+---
+
+## Learning Journey
+
+`usethis::git_sitrep()`
+
+I had been ignoring this for awhile:
+```
+x Token may be mis-scoped: 'repo' and 'user' are highly recommended scopes
+  The 'workflow' scope is needed to manage GitHub Actions workflow files
+  If you are troubleshooting, consider this
+```
+
+One day I decided to fix it. Led me to:
+https://usethis.r-lib.org/articles/articles/git-credentials.html
+
+---
+
+## Final Thoughts
+
+* Everyone is still learning
+* Pick your battles
+* Give yourself permission/time to learn 
+* Find what works for you - for me, sporadic, intensive R time usually built around conferences.  
 
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
