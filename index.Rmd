@@ -45,10 +45,10 @@ style_duo_accent(
 )
 ```
 
-# This Month I Learned
+# This Month I Learned...
+<https://cwickham.github.io/this-month-I-learned/>  
 
 Charlotte Wickham  
-<https://cwickham.github.io/this-month-I-learned/>  
 @ Rladies DC, April 2021  
 
 ---
