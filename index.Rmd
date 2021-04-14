@@ -16,7 +16,7 @@ output:
       countIncrementalSlides: true
 ---
 
-class: center middle
+class: center middle bg-navy white
 
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
@@ -34,46 +34,112 @@ knitr::opts_chunk$set(
 
 ```{r xaringan-themer, include=FALSE, warning=FALSE}
 library(xaringanthemer)
+blue <- "#33B1FF"
+navy <- "#302E44"
+grey <- "#DFDFDF"
+pink <- "#F44B70"
+white <- "#ffffff"
+light <- "#E6F6FF"
 style_duo_accent(
   base_font_size = "24px",
-  primary_color = "#1381B0",
-  secondary_color = "#FF961C",
-  inverse_header_color = "#FFFFFF",
+  primary_color = navy,
+  secondary_color = blue,
+  black_color = navy,
+  header_color = blue,
+  link_color = pink,
+  code_inline_color = pink,
+  inverse_header_color = white,
+  header_h2_font_size = "2.0rem",
+  header_font_google = google_font("Kiwi Maru", "400"),
   extra_css = list(
-    ".inverse code" = list("color" = "#ffffff"),
-    ".title-slide a" = list("color" = "#ffffff"))
+    ".inverse code" = list("color" = white),
+    ".title h1"  = list("color" = white),
+    ".title a"  = list("color" = white)
+  ),
+  colors = list(
+    blue = blue,
+    navy = navy,
+    grey = grey,
+    pink = pink,
+    white = white
+  )
 )
 ```
 
-# This Month I Learned...
-<https://cwickham.github.io/this-month-I-learned/>  
+```{r metathis, echo=FALSE}
+# Based on https://www.garrickadenbuie.com/blog/sharing-xaringan-slides/
+library(metathis)
+meta() %>%
+  meta_name("github-repo" = "cwickham/this-month-i-learned") %>% 
+  meta_social(
+    title = "This Month I Learned...",
+    description = paste(
+      "Presented at Rladies DC April 2021."
+    ),
+    url = "https://cwickham.github.io/this-month-I-learned",
+    image = "https://raw.githubusercontent.com/cwickham/this-month-I-learned/main/social-card.png",
+    image_alt = paste(
+      "Title slide of 'This Month I Learned...'", 
+      "Presented at Rladies DC, April 2021, by Charlotte Wickham."
+    ),
+    og_type = "website",
+    og_author = "Charlotte Wickham",
+    twitter_card_type = "summary_large_image",
+    twitter_creator = "@cvwickham"
+  )
+```
 
+.pull-left[
+<img style="border-radius: 50%;" src="assets/undraw/undraw_Hiking_re_k0bc.png"/>
+]
+
+.pull-right[
+
+.title[
+# This Month I Learned...
+<https://cwickham.github.io/this-month-I-learned/>
+] 
 Charlotte Wickham  
 @ Rladies DC, April 2021  
+]
+
+
 
 ---
+
+class: middle
 
 .left-column[
 <img style="border-radius: 50%;" src="assets/headshot_2019.jpg" width="150px"/>
 
-[`r icons::icon_style(icons::fontawesome("github"), fill = "#1381B0")` @cwickham](https://github.com/cwickham)  
-[`r icons::icon_style(icons::fontawesome("twitter"), fill = "#1381B0")` @cvwickham](https://twitter.com/cvwickham)
+[`r icons::icon_style(icons::fontawesome("github"), fill = pink)` @cwickham](https://github.com/cwickham)  
+[`r icons::icon_style(icons::fontawesome("twitter"), fill = pink)` @cvwickham](https://twitter.com/cvwickham)
 ]
 
 .right-column[
-## Hello, my name is Charlotte Wickham
 
-### Part-time @ Oregon State University, Statistics Department
+## Hello, my name is 
 
-### Independent R Trainer and Consultant
+## .navy[Charlotte Wickham]
+
+* Part-time @ Oregon State University, Statistics Department
+
+* Independent R Trainer and Consultant
 
 ]
 
 ---
 
-class: inverse middle center
+class: middle center
 
+.pull-left[
 # Everyone is Still Learning
+]
+
+.pull-right[
+<img style="border-radius: 50%;" src="assets/undraw/undraw_community_8nwl.png"/>
+]
+
 
 ---
 
@@ -179,7 +245,7 @@ class: inverse center middle
 
 ---
 
-## Snippets Quickly Add Chunks of Code
+## Snippets Add Chunks of Code
 
 .pull-left[
 
@@ -204,7 +270,7 @@ class: inverse center middle
 
 ---
 
-## Snippets Quickly Add Chunks of Code
+## Snippets Add Chunks of Code
 
 .pull-left[
 
@@ -338,7 +404,7 @@ writeLines(r"(One: \, Two: \\)")
 
 layout:true
 
-## Useful When you Copy a Regular Expression
+## Copy a Regular Expression
 
 ---
 
@@ -383,6 +449,65 @@ Tweet: someone mentioned native pipes coming in R
 Led me to [keynotes at useR!2020](https://user2020.r-project.org/program/agenda/)
 
 Ended up watching [New Developments in R 4.0.0 and Beyond (Part 1 and Part 2)](https://youtu.be/X_eDHNVceCU)
+
+---
+class: inverse center middle
+
+# `gitcreds::gitcreds_set()`
+
+---
+.pull-left[
+
+## Storing GitHub Credentials
+
+I had `GITHUB_PAT` stored in `.Renviron`
+
+Works great with [usethis](https://usethis.r-lib.org/) and [gh](https://gh.r-lib.org/)
+
+Downside: sensitive information stored in a plain text file
+
+]
+
+.pull-right[
+![](assets/renviron-github-pat.png)
+]
+
+---
+
+.pull-left[
+
+##  Storing GitHub Credentials
+
+#### A better way: `gitcreds::gitcreds_set()`
+
+Uses your operating system credential manager:
+* Mac: Keychain Access
+* Windows: Credential Manager
+
+Works seamlessly with usethis and gh
+
+]
+
+.pull-right[
+![](assets/gitcreds-set.png)
+]
+
+---
+
+## Learning Journey
+
+I use `usethis::git_sitrep()` a lot when working on projects
+
+I had been ignoring this for awhile:
+```
+x Token may be mis-scoped: 'repo' and 'user' are highly recommended scopes
+  The 'workflow' scope is needed to manage GitHub Actions workflow files
+  If you are troubleshooting, consider this
+```
+
+One day I decided to fix it. Led me to:
+https://usethis.r-lib.org/articles/articles/git-credentials.html
+
 
 ---
 class: inverse center middle
@@ -436,7 +561,7 @@ simple %>%
 
 ---
 
-### With `rowwise()`, function gets one element at a time
+### With `rowwise()`, one element at a time
 
 .pull-left[
 ```{r}
@@ -552,75 +677,21 @@ Still figuring out best way to teach...
 Read more at: https://dplyr.tidyverse.org/articles/rowwise.html
 
 ---
+
 class: inverse center middle
-
-# `gitcreds::gitcreds_set()`
-
----
-.pull-left[
-
-## Storing GitHub Credentials
-
-I had `GITHUB_PAT` stored in `.Renviron`
-
-Works great with [usethis](https://usethis.r-lib.org/) and [gh](https://gh.r-lib.org/)
-
-Downside: sensitive information stored in a plain text file
-
-]
-
-.pull-right[
-![](assets/renviron-github-pat.png)
-]
+# Getting Exposure
 
 ---
 
 .pull-left[
 
-##  Storing GitHub Credentials
-
-#### A better way: `gitcreds::gitcreds_set()`
-
-Uses your operating system credential manager:
-* Mac: Keychain Access
-* Windows: Credential Manager
-
-Works seamlessly with usethis and gh
-
-]
-
-.pull-right[
-![](assets/gitcreds-set.png)
-]
-
----
-
-## Learning Journey
-
-I use `usethis::git_sitrep()` a lot when working on projects
-
-I had been ignoring this for awhile:
-```
-x Token may be mis-scoped: 'repo' and 'user' are highly recommended scopes
-  The 'workflow' scope is needed to manage GitHub Actions workflow files
-  If you are troubleshooting, consider this
-```
-
-One day I decided to fix it. Led me to:
-https://usethis.r-lib.org/articles/articles/git-credentials.html
-
----
-
-## Getting Exposure
-
-.pull-left[
-When you update, read over the release news:
+## Read Release News
 
 * [RStudio IDE blog](https://blog.rstudio.com/categories/rstudio-ide/)
 * [Tidyverse blog](https://www.tidyverse.org/blog/)
 * [R News](https://cran.r-project.org/doc/manuals/r-release/NEWS.html)
 
-Conferences:
+## Conferences
 
 * Attend
 * Skim abstracts, track down GitHub repos
@@ -628,7 +699,8 @@ Conferences:
 ]
 
 .pull-right[
-Stay connected:
+
+## Stay connected
 
 * [rstats twitter](https://twitter.com/search?q=%23rstats)
 * meetups
@@ -637,13 +709,40 @@ Stay connected:
 
 ---
 
-## Final Thoughts
+class: inverse center middle
+# Final Thoughts
 
-### Find what works for you 
+---
+
+class: center middle
+
+## Find what works for you 
 
 For me, sporadic, intensive, "R time" usually built around conferences
 
-### Give yourself permission and time to learn 
+---
 
-### Pick your battles
+class: center middle
 
+## Give yourself permission and time to learn 
+
+---
+
+class: center middle
+
+## Pick your battles
+
+---
+class: center middle bg-navy white
+
+## .white[Thank You]
+
+<https://cwickham.github.io/this-month-I-learned/>  
+
+
+.title[[`r icons::icon_style(icons::fontawesome("github"), fill = white)` @cwickham](https://github.com/cwickham)
+[`r icons::icon_style(icons::fontawesome("twitter"), fill = white)` @cvwickham](https://twitter.com/cvwickham)]
+
+.footnote[
+Images: [undraw](https://undraw.co/)
+]

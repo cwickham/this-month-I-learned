@@ -19,7 +19,7 @@
  *
  * ------------------------------------------------------- */
 @import url(https://fonts.googleapis.com/css?family=Noto+Sans:400,400i,700,700i&display=swap);
-@import url(https://fonts.googleapis.com/css?family=Cabin:600,600i&display=swap);
+@import url(https://fonts.googleapis.com/css?family=Kiwi+Maru:400&display=swap);
 @import url(https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700&display=swap);
 
 
@@ -29,7 +29,7 @@
   --text-font-is-google: 1;
   --text-font-family-fallback: -apple-system, BlinkMacSystemFont, avenir next, avenir, helvetica neue, helvetica, Ubuntu, roboto, noto, segoe ui, arial;
   --text-font-base: sans-serif;
-  --header-font-family: Cabin;
+  --header-font-family: 'Kiwi Maru';
   --header-font-is-google: 1;
   --header-font-family-fallback: Georgia, serif;
   --code-font-family: 'Source Code Pro';
@@ -39,28 +39,33 @@
   --code-font-size: 0.9rem;
   --code-inline-font-size: 1em;
   --header-h1-font-size: 2.75rem;
-  --header-h2-font-size: 2.25rem;
+  --header-h2-font-size: 2.0rem;
   --header-h3-font-size: 1.75rem;
 
   /* Colors */
-  --text-color: #000000;
-  --header-color: #1381B0;
+  --text-color: #302E44;
+  --header-color: #33B1FF;
   --background-color: #FFFFFF;
-  --link-color: #1381B0;
-  --text-bold-color: #1381B0;
+  --link-color: #F44B70;
+  --text-bold-color: #302E44;
   --code-highlight-color: rgba(255,255,0,0.5);
-  --inverse-text-color: #000000;
-  --inverse-background-color: #FF961C;
-  --inverse-header-color: #FFFFFF;
-  --inverse-link-color: #1381B0;
-  --title-slide-background-color: #1381B0;
-  --title-slide-text-color: #000000;
-  --header-background-color: #1381B0;
+  --inverse-text-color: #302E44;
+  --inverse-background-color: #33B1FF;
+  --inverse-header-color: #ffffff;
+  --inverse-link-color: #F44B70;
+  --title-slide-background-color: #302E44;
+  --title-slide-text-color: #FFFFFF;
+  --header-background-color: #33B1FF;
   --header-background-text-color: #FFFFFF;
-  --primary: #1381B0;
-  --secondary: #FF961C;
+  --primary: #302E44;
+  --secondary: #33B1FF;
   --white: #FFFFFF;
-  --black: #000000;
+  --black: #302E44;
+  --blue: #33B1FF;
+  --navy: #302E44;
+  --grey: #DFDFDF;
+  --pink: #F44B70;
+  --white: #ffffff;
 }
 
 html {
@@ -101,10 +106,10 @@ h1, h2, h3 {
 }
 .remark-inline-code {
   font-size: var(--code-inline-font-size);
-  color: #1381B0;
+  color: #F44B70;
 }
 .remark-slide-number {
-  color: #1381B0;
+  color: #302E44;
   opacity: 1;
   font-size: 0.9em;
 }
@@ -149,10 +154,10 @@ a, a > code {
   float: left;
 }
 .left-column h2, .left-column h3 {
-  color: #1381B099;
+  color: #302E4499;
 }
 .left-column h2:last-of-type, .left-column h3:last-child {
-  color: #1381B0;
+  color: #302E44;
 }
 .right-column {
   width: 75%;
@@ -174,7 +179,7 @@ img, video, iframe {
   max-width: 100%;
 }
 blockquote {
-  border-left: solid 5px #FF961C80;
+  border-left: solid 5px #33B1FF80;
   padding-left: 1em;
 }
 .remark-slide table {
@@ -189,7 +194,7 @@ th, td {
   padding: 5px;
 }
 .remark-slide thead, .remark-slide tfoot, .remark-slide tr:nth-child(even) {
-  background: #FFEAD1;
+  background: #D6EFFF;
 }
 table.dataTable tbody {
   background-color: var(--background-color);
@@ -199,7 +204,7 @@ table.dataTable.display tbody tr.odd {
   background-color: var(--background-color);
 }
 table.dataTable.display tbody tr.even {
-  background-color: #FFEAD1;
+  background-color: #D6EFFF;
 }
 table.dataTable.hover tbody tr:hover, table.dataTable.display tbody tr:hover {
   background-color: rgba(255, 255, 255, 0.5);
@@ -263,6 +268,36 @@ table.dataTable.hover tbody tr:hover, table.dataTable.display tbody tr:hover {
 .bg-black {
   background-color: var(--black);
 }
+.blue {
+  color: var(--blue);
+}
+.bg-blue {
+  background-color: var(--blue);
+}
+.navy {
+  color: var(--navy);
+}
+.bg-navy {
+  background-color: var(--navy);
+}
+.grey {
+  color: var(--grey);
+}
+.bg-grey {
+  background-color: var(--grey);
+}
+.pink {
+  color: var(--pink);
+}
+.bg-pink {
+  background-color: var(--pink);
+}
+.white {
+  color: var(--white);
+}
+.bg-white {
+  background-color: var(--white);
+}
 
 
 
@@ -270,6 +305,9 @@ table.dataTable.hover tbody tr:hover, table.dataTable.display tbody tr:hover {
 .inverse code {
   color: #ffffff;
 }
-.title-slide a {
+.title h1 {
+  color: #ffffff;
+}
+.title a {
   color: #ffffff;
 }
