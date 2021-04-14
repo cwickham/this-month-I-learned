@@ -114,6 +114,7 @@ class: middle
 
 [`r icons::icon_style(icons::fontawesome("github"), fill = pink)` @cwickham](https://github.com/cwickham)  
 [`r icons::icon_style(icons::fontawesome("twitter"), fill = pink)` @cvwickham](https://twitter.com/cvwickham)
+[cwick.co.nz](https://cwick.co.nz)
 ]
 
 .right-column[
