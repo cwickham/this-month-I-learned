@@ -270,3 +270,6 @@ table.dataTable.hover tbody tr:hover, table.dataTable.display tbody tr:hover {
 .inverse code {
   color: #ffffff;
 }
+.title-slide a {
+  color: #ffffff;
+}

@@ -1,6 +1,6 @@
 ---
 title: "This Month I Learned"
-subtitle: ""  
+subtitle: "https://cwickham.github.io/this-month-I-learned/"  
 author: 
   - "Charlotte Wickham"
 date:  "@ Rladies DC, April 2021"
@@ -36,21 +36,130 @@ style_duo_accent(
   primary_color = "#1381B0",
   secondary_color = "#FF961C",
   inverse_header_color = "#FFFFFF",
-  extra_css = list(".inverse code" = list("color" = "#ffffff"))
+  extra_css = list(
+    ".inverse code" = list("color" = "#ffffff"),
+    ".title-slide a" = list("color" = "#ffffff"))
 )
 ```
 
-# The way I learn
+.left-column[
+<img style="border-radius: 50%;" src="assets/headshot_2019.jpg" width="150px"/>
 
-1. Do an example with guidance
-2. Apply it to something I care about
-3. Teach it to someone else
+[`r icons::icon_style(icons::fontawesome("github"), fill = "#1381B0")` @cwickham](https://github.com/cwickham)  
+[`r icons::icon_style(icons::fontawesome("twitter"), fill = "#1381B0")` @cvwickham](https://twitter.com/cvwickham)
+]
 
-But this all requires:
+.right-column[
+## Hello, my name is Charlotte Wickham
 
-0\. Know it exists
+### Part-time @ Oregon State University, Statistics Department
 
-How do you get exposure to things?
+### Independent R Trainer and Consultant
+
+]
+
+---
+
+class: inverse middle center
+
+# Everyone is Still Learning
+
+---
+
+class: middle
+
+#### The way I learn
+
+## 1. Do an example with guidance
+## 2. Apply it to something I care about
+## 3. Teach it to someone else
+
+---
+
+class: middle
+
+### But this all requires
+
+## 0\. Know it exists
+
+---
+
+## Things I Learned ~~This Month~~ in January
+ 
+* Using Visual Editor Mode in RStudio
+* Add a Snippet to RStudio
+* Raw Character Strings
+* Storing GitHub Credentials (better)
+* `dplyr::rowwise`
+
+#### You get: exposure, and ideas for exposure
+#### I get: to teach
+
+---
+
+layout: false
+class: inverse center middle
+
+# Visual Editor Mode in RStudio
+
+---
+
+.pull-left[
+
+## Visual Editor Mode
+
+#### Activate in any RMarkdown file
+![](assets/visual-editor-button-zoom.png)
+]
+
+.pull-right[
+![](assets/visual-editor-button.png)
+]
+
+---
+
+
+.pull-left[
+
+## Visual Editor Mode
+
+#### What You See is What You Get
+
+]
+
+.pull-right[
+![](assets/visual-editor-mode.png)
+]
+
+---
+
+class: middle
+
+.pull-left[
+## One Reason To Try It: Tables! 
+]
+
+.pull-right[
+<video width="400" height="400" controls>
+    <source src="assets/visual-editor-tables.mp4" type="video/mp4"> </video>
+]
+
+---
+
+
+## Learning Journey
+
+.pull-left[
+I saw a tweet during `rstudio::global(2021)`.
+
+I had no idea what they were talking about. New in RStudio 1.4.
+
+More at: https://rstudio.github.io/visual-markdown-editing
+]
+
+.pull-right[
+![](assets/visual-editor-tweet.png)
+]
 
 ---
 class: inverse center middle
@@ -161,70 +270,14 @@ class: inverse center middle
 
 ## Learning Journey
 
-https://support.rstudio.com/hc/en-us/articles/204463668-Code-Snippets
+I'd seen recommendations to use snippets in other learning resources:
 
+* `shinyapp` in [Mastering Shiny](https://mastering-shiny.org/basic-app.html#create-app)
+* `fun` in ?
 
+I recognized one day a use case for myself
 
----
-
-layout: false
-class: inverse center middle
-
-# Visual Editor Mode in RStudio
-
----
-
-.pull-left[
-
-## Visual Editor Mode
-
-#### Activate in any RMarkdown file
-![](assets/visual-editor-button-zoom.png)
-]
-
-.pull-right[
-![](assets/visual-editor-button.png)
-]
-
----
-
-
-.pull-left[
-
-## Visual Editor Mode
-
-#### What You See is What You Get
-
-]
-
-.pull-right[
-![](assets/visual-editor-mode.png)
-]
-
----
-
-class: middle
-
-.pull-left[
-## One Reason To Try It: Tables! 
-]
-
-.pull-right[
-<video width="400" height="400" controls>
-    <source src="assets/visual-editor-tables.mp4" type="video/mp4"> </video>
-]
-
----
-
-
-## Learning Journey
-
-RStudio 1.4 
-Screenshot
-
-tweet "RStudio's visual editor mode is awesome"
-
-Demo screen cast with default RMarkdown template, of inserting a table. Switch back to non-visual mode.
+Led me to: https://support.rstudio.com/hc/en-us/articles/204463668-Code-Snippets
 
 ---
 class: inverse center middle
@@ -312,10 +365,13 @@ layout: false
 
 ## Learning Journey
 
-New in R 4.0.0 - So I could have read about it in NEWS
+New in R 4.0.0 - So I could have read about it in NEWS, but I hadn't.
 
-Someone mentioned new pipes, led me to Keynotes at useR! 
-What is this raw string thing?
+Tweet: someone mentioned native pipes coming in R
+
+Led me to [keynotes at useR!2020](https://user2020.r-project.org/program/agenda/)
+
+Ended up watching [New Developments in R 4.0.0 and Beyond (Part 1 and Part 2)](https://youtu.be/X_eDHNVceCU)
 
 ---
 class: inverse center middle
@@ -384,23 +440,105 @@ simple %>%
 ]
 
 ---
+layout:true
 
-## Useful for non-vectorized functions
-
-## Useful for creating and working with list columns
+## Working with List Columns
 
 ---
 
+.pull-left[
+```{r starwars, eval = FALSE}
+starwars %>% 
+  select(name, films)
+```
+]
+
+.pull-right[
+```{r ref.label="starwars", echo=FALSE}
+```
+]
+
+---
+
+
+.pull-left[
+```{r starwars_nfilms, eval = FALSE}
+starwars %>% 
+  select(name, films) %>% 
+  rowwise() %>% 
+  mutate(n_films = length(films))
+```
+]
+
+.pull-right[
+```{r ref.label="starwars_nfilms", echo=FALSE}
+```
+]
+
+---
+layout: true
+
+## Creating List Columns
+
+---
+
+```{r starwars_nest}
+starwars %>% 
+  filter(species %in% c("Human", "Droid")) %>% 
+  group_by(species) %>% 
+  nest() 
+```
+
+---
+
+```{r starwars_model, include = FALSE}
+starwars %>% 
+  filter(species %in% c("Human", "Droid")) %>% 
+  group_by(species) %>% 
+  nest() %>% 
+  rowwise() %>% 
+  mutate(
+    model = list(lm(height ~ mass, data = data))
+  )
+```
+
+```{r, echo = FALSE}
+library(flair)
+decorate("starwars_model") %>% 
+  flair("list")
+```
+
+
+---
+
+
+```{r}
+starwars %>% 
+  filter(species %in% c("Human", "Droid")) %>% 
+  group_by(species) %>% 
+  nest() %>% 
+  rowwise() %>% 
+  mutate(
+    model = list(lm(height ~ mass, data = data)),
+    slope = coefficients(model)[2]
+  )
+```
+
+---
+
+layout: false
+
 ## Learning Journey
 
-Row-wise operations 
-https://dplyr.tidyverse.org/articles/rowwise.html
+I've known about `rowwise()` for awhile from [dplyr 1.0.0 previews](https://www.tidyverse.org/blog/2020/04/dplyr-1-0-0-rowwise/)
 
-May delay having to learn about [purrr](https://purrr.tidyverse.org/)
+I hadn't really taken time to learn about it
 
-Can replace combinations of `mutate()` with `purrr::map()`
+I needed to teach iteration to novice R learners: Could I do it without using purrr?
 
-No equivalent of `purrr::walk()`
+Still figuring out best way to teach...
+
+Read more at: https://dplyr.tidyverse.org/articles/rowwise.html
 
 ---
 class: inverse center middle
@@ -448,7 +586,7 @@ Works seamlessly with usethis and gh
 
 ## Learning Journey
 
-`usethis::git_sitrep()`
+I use `usethis::git_sitrep()` a lot when working on projects
 
 I had been ignoring this for awhile:
 ```
@@ -462,10 +600,39 @@ https://usethis.r-lib.org/articles/articles/git-credentials.html
 
 ---
 
+## Getting Exposure
+
+.pull-left[
+When you update, read over the release news:
+
+* [RStudio IDE blog](https://blog.rstudio.com/categories/rstudio-ide/)
+* [Tidyverse blog](https://www.tidyverse.org/blog/)
+* [R News](https://cran.r-project.org/doc/manuals/r-release/NEWS.html)
+
+Conferences:
+
+* Attend
+* Skim abstracts, track down GitHub repos
+* If available, watch streams or recordings
+]
+
+.pull-right[
+Stay connected:
+
+* [rstats twitter](https://twitter.com/search?q=%23rstats)
+* meetups
+* blogs
+]
+
+---
+
 ## Final Thoughts
 
-* Everyone is still learning
-* Pick your battles
-* Give yourself permission/time to learn 
-* Find what works for you - for me, sporadic, intensive R time usually built around conferences.  
+### Find what works for you 
+
+For me, sporadic, intensive, "R time" usually built around conferences
+
+### Give yourself permission and time to learn 
+
+### Pick your battles
 
